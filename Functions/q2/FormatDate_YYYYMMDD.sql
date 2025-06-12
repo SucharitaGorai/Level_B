@@ -1,0 +1,9 @@
+CREATE FUNCTION dbo.FormatDateYYYYMMDD
+(
+    @InputDate DATETIME
+)
+RETURNS CHAR(8)
+AS
+BEGIN
+    RETURN CONVERT(CHAR(8), @InputDate, 112)
+END
