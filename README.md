@@ -1,68 +1,67 @@
-📌 Overview
-This repository contains SQL scripts for two database systems:
+# SQL Project: AdventureWorks & Custom Northwind Database
 
-AdventureWorks - Advanced stored procedures, functions, and views for sales/inventory management
+## 📁 Project Overview
 
-Northwind-Inspired Sample - Focused on trigger implementations for order processing
+This repository contains SQL scripts and database objects related to two major databases:
 
-📂 Repository Structure
-1. AdventureWorks Solutions
-Location: /adventureworks/
-Components:
+- **AdventureWorks**: A sample enterprise database from Microsoft.
+- **Custom Northwind**: A manually created version of the Northwind database, developed from scratch without using `.bak` files.
 
-Stored Procedures: Order CRUD operations with inventory control
+---
 
-Functions: Date formatting utilities
+## 📦 Contents
 
-Views: Customer order reporting
+### 1. `AdventureWorks/`
+Contains:
+- SQL practice queries
+- Stored procedures and views
+- Joins, subqueries, and aggregations
+- Business scenario-based exercises
 
-Triggers: Referential integrity and stock validation
+### 2. `Northwind/`
+Contains:
+- Manually written `CREATE TABLE` scripts
+- Data insertion scripts
+- Stored procedures, views, and triggers
+- Sample business logic and analysis queries
 
-2. Northwind-Inspired Sample
-Location: /northwind-sample/
-Components:
+---
 
-Database Schema: Simplified Products/Orders/OrderDetails tables
+## 🛠️ How to Use the Databases
 
-Triggers:
+### ✅ AdventureWorks
 
-tr_Orders_InsteadOfDelete - Cascade delete implementation
+You can download the official `.bak` backup file from Microsoft and restore it using SQL Server Management Studio (SSMS).
 
-tr_OrderDetails_CheckStock - Inventory validation
+**Download Link:**  
+👉 [AdventureWorks Sample Database by Microsoft](https://learn.microsoft.com/en-us/sql/samples/adventureworks-install-configure)
 
-⚙️ Setup Guide
-AdventureWorks
-sql
--- Execute scripts in AdventureWorks database
-USE AdventureWorks;
-GO
+Steps:
+1. Download the `.bak` file.
+2. Open SSMS → Connect to your server.
+3. Right-click `Databases` → Restore Database.
+4. Choose the downloaded `.bak` file.
 
--- Example: Create order management procedures
-\adventureworks\order_management.sql
-Northwind-Sample
-sql
--- Initialize sample database
-CREATE DATABASE SampleNorthwind;
-GO
+---
 
--- Execute schema + triggers
-\northwind-sample\setup.sql
-🔑 Key Features
-System	Core Features
-AdventureWorks	Production-grade order processing, inventory tracking, and reporting views
-Northwind-Sample	Minimal implementation focusing on trigger-based business rules
-🚀 Quick Start Examples
-AdventureWorks
-sql
--- Insert order with inventory check
-EXEC InsertOrderDetails @OrderID=43659, @ProductID=707, @Quantity=2;
+### ✅ Custom Northwind (Manual Setup)
 
--- Get formatted date
-SELECT dbo.FormatDateMMDDYYYY(GETDATE());
-Northwind-Sample
-sql
--- Test stock validation
-INSERT INTO OrderDetails VALUES (3, 1001, 2, 100); -- Fails if insufficient stock
+Unlike AdventureWorks, this version of **Northwind** has been created manually.
 
--- Test cascade delete
-DELETE FROM Orders WHERE OrderID = 1001; -- Auto-deletes details
+Follow these steps:
+
+1. Open the `Northwind/` folder in this repository.
+2. Run the SQL scripts in the following order:
+   - `1_create_tables.sql` → Creates all tables (Customers, Orders, Products, etc.)
+   - `2_insert_data.sql` → Inserts sample data into the tables.
+   - `3_create_views.sql` → Creates useful views for reporting.
+   - `4_stored_procedures.sql` → Defines stored procedures for operations like placing an order.
+   - `5_triggers.sql` → Adds triggers for automation (e.g., stock update on new order).
+
+3. Verify by running a few SELECT queries:
+   ```sql
+   SELECT * FROM Customers;
+   SELECT * FROM Orders;
+🙋 Author
+Sucharita Gorai
+📅 Created: June 2025
